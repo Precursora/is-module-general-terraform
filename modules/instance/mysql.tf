@@ -42,8 +42,6 @@ module "mysql_databases" {
   count               = length(var.databases_names)
   source              = "../database"
   project_name        = var.project_name
-  default_region      = var.default_region
-  default_zone        = var.default_zone
   instance_name       = var.instance_name
   database_collation  = var.database_collation
   database_name       = var.databases_names[count.index]
@@ -53,8 +51,6 @@ module "mysql_databases" {
 module "mysql_instance_user" {
   source            = "../user"
   project_name      = var.project_name
-  default_region    = var.default_region
-  default_zone      = var.default_zone
   instance_name     = var.instance_name
   instance_username = var.instance_username
 }
@@ -93,10 +89,8 @@ module "mysql_instance_stop_scheduler_job" {
 
 # MySQL instance host secret creation
 module "mysql_instance_host_secret" {
-  source          = "../secret"
-  project_name    = var.project_name
-  default_region  = var.default_region
-  default_zone    = var.default_zone
-  secret_name     = "${var.instance_name}-db-host"
-  secret_value    = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
+  source        = "../secret"
+  project_name  = var.project_name
+  secret_name   = "${var.instance_name}-db-host"
+  secret_value  = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
 }
