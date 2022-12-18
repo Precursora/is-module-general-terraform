@@ -41,7 +41,6 @@ resource "google_sql_database_instance" "mysql_instance" {
 module "mysql_databases" {
   count               = length(var.databases_names)
   source              = "../database"
-  project_name        = var.project_name
   instance_name       = var.instance_name
   database_collation  = var.database_collation
   database_name       = var.databases_names[count.index]

@@ -7,7 +7,6 @@ resource "random_password" "sql_user_password" {
 
 # SQL user creation
 resource "google_sql_user" "sql_user_username" {
-  project   = var.project_name
   name      = var.instance_username
   instance  = var.instance_name
   password  = random_password.sql_user_password.result
