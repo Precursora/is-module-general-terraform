@@ -7,8 +7,9 @@ provider "google" {
 
 # SQL database creation
 resource "google_sql_database" "sql_database" {
+  count     = length(var.databases_names)
   provider  = google
-  name      = var.database_name
+  name      = one(var.databases_names[count.index])
   instance  = var.instance_name
   collation = var.database_collation
 }
