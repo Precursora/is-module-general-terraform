@@ -39,13 +39,14 @@ resource "google_sql_database_instance" "mysql_instance" {
 
 # MySQL databases creation
 module "mysql_databases" {
+  count               = length(var.databases_names)
   source              = "../database"
   project_name        = var.project_name
   default_region      = var.default_region
   default_zone        = var.default_zone
   instance_name       = var.instance_name
   database_collation  = var.database_collation
-  databases_names     = var.databases_names
+  database_name       = var.databases_names[count.index]
 }
 
 # MySQL instance user creation
@@ -96,6 +97,6 @@ module "mysql_instance_host_secret" {
   project_name    = var.project_name
   default_region  = var.default_region
   default_zone    = var.default_zone
-  secret_name     = "${var.instance_name}-host"
+  secret_name     = "${var.instance_name}-db-host"
   secret_value    = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
 }

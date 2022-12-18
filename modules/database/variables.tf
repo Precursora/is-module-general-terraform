@@ -18,6 +18,6 @@ variable "database_collation" {
   type = string
 }
 
-variable "databases_names" {
-  type = list(string)
+variable "database_name" {
+  type = string
 }
