@@ -10,11 +10,11 @@ Criação de instâncias MySQL, com vários recursos adicionais:
 - Secrets para armazenamento de credenciais dos usuários e informações de host da instância.
 - Gatilhos para desligamento e ativação automática de instâncias.
 
-### MySQL Databases
-Criação de bases de dados MySQL para instâncias pré-existentes e usuários exclusivos para as bases criadas.
+### Databases
+Criação de bases de dados SQL para instâncias pré-existentes.
 
-### MySQL Instance Users
-Criação de usuários e senhas para conexão com as bases de dados MySQL pré-existentes e geração automática de secrets com as credenciais do novo usuário.
+### Users
+Criação de usuários e senhas para conexão com as instâncias SQL pré-existentes e geração automática de secrets com as credenciais do novo usuário.
 
 ### Secrets
 Criação de secrets para armazenamento de dados sigilosos.
@@ -33,5 +33,5 @@ module "my_module" {
 ```
 
 ## Links úteis
-- Documentação de módulos do Terraform
-- Template para geração de projetos de infraestrutura em Terraform
+- [Documentação de módulos do Terraform](https://developer.hashicorp.com/terraform/language/modules/develop)
+- [Template para geração de projetos de infraestrutura em Terraform](https://github.com/FelipeMenezesDM/general-infra-template)
