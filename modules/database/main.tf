@@ -9,7 +9,7 @@ provider "google" {
 resource "google_sql_database" "sql_database" {
   count     = length(var.databases_names)
   provider  = google
-  name      = one(var.databases_names[count.index])
+  name      = var.databases_names[count.index]
   instance  = var.instance_name
   collation = var.database_collation
 }
