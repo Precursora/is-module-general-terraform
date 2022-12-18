@@ -39,14 +39,13 @@ resource "google_sql_database_instance" "mysql_instance" {
 
 # MySQL databases creation
 module "mysql_databases" {
-  count               = length(var.databases_names)
   source              = "../database"
   project_name        = var.project_name
   default_region      = var.default_region
   default_zone        = var.default_zone
   instance_name       = var.instance_name
   database_collation  = var.database_collation
-  database_name       = var.databases_names[count.index]
+  databases_names     = var.databases_names
 }
 
 # MySQL instance user creation
