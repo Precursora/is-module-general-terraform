@@ -1,13 +1,6 @@
-# Default provider
-provider "google" {
-  region  = var.default_region
-  zone    = var.default_zone
-  project = var.project_name
-}
-
 # Secret creation
 resource "google_secret_manager_secret" "secret" {
-  provider  = google
+  project   = var.project_name
   secret_id = var.secret_name
 
   replication {
