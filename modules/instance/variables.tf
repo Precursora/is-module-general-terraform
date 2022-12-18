@@ -7,13 +7,11 @@ variable "vpc_id" {
 }
 
 variable "default_region" {
-  type    = string
-  default = "us-east1"
+  type = string
 }
 
 variable "default_zone" {
-  type    = string
-  default = "us-east1-a"
+  type = string
 }
 
 variable "instance_name" {
@@ -21,8 +19,7 @@ variable "instance_name" {
 }
 
 variable "instance_username" {
-  type    = string
-  default = "dbuser"
+  type = string
 }
 
 variable "instance_type" {
@@ -42,7 +39,7 @@ variable "instance_disk_autoresize" {
 }
 
 variable "instance_connection_port" {
-  type    = string
+  type = string
 }
 
 variable "instance_availability_type" {
@@ -78,31 +75,25 @@ variable "databases_names" {
 }
 
 variable "instance_job_time_zone" {
-  type    = string
-  default = "America/Belem"
+  type = string
 }
 
 variable "instance_job_attempt_deadline" {
-  type    = string
-  default = "90s"
+  type = string
 }
 
 variable "instance_job_start_event_cron" {
-  type    = string
-  default = "0 7 * * 1-5"
+  type = string
 }
 
 variable "instance_job_start_event_paused" {
-  type    = bool
-  default = false
+  type = bool
 }
 
 variable "instance_job_stop_event_cron" {
-  type    = string
-  default = "0 0 * * *"
+  type = string
 }
 
 variable "instance_job_stop_event_paused" {
-  type    = bool
-  default = false
+  type = bool
 }

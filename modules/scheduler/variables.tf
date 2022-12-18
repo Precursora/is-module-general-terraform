@@ -3,13 +3,11 @@ variable "project_name" {
 }
 
 variable "default_region" {
-  type    = string
-  default = "us-east1"
+  type = string
 }
 
 variable "default_zone" {
-  type    = string
-  default = "us-east1-a"
+  type = string
 }
 
 variable "instance_name" {
