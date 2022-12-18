@@ -41,7 +41,7 @@ resource "google_sql_database_instance" "mysql_instance" {
 module "mysql_databases" {
   count               = length(var.databases_names)
   source              = "../database"
-  instance_name       = var.instance_name
+  instance_name       = google_sql_database_instance.mysql_instance.name
   database_collation  = var.database_collation
   database_name       = var.databases_names[count.index]
 }
@@ -50,7 +50,7 @@ module "mysql_databases" {
 module "mysql_instance_user" {
   source            = "../user"
   project_name      = var.project_name
-  instance_name     = var.instance_name
+  instance_name     = google_sql_database_instance.mysql_instance.name
   instance_username = var.instance_username
 }
 

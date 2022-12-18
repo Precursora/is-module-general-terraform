@@ -22,6 +22,7 @@ module "user_username_secret" {
 
 # SQL user password secret creation
 module "user_password_secret" {
+  depends_on    = [google_sql_user.sql_user_username]
   source        = "../secret"
   project_name  = var.project_name
   secret_name   = "${var.instance_name}-db-password"
