@@ -25,6 +25,9 @@ Criação de jobs para execução de rotinas por agendamento.
 ### ReCaptcha Enterprise
 Criação de chave para ReCaptcha Enterprise, com geração de secret para armazenamento da chave criada.
 
+### Domains
+Criação de subdomínios usando domínios pré-verificados na conta.
+
 ## Uso
 Adicionar módulo no projeto de infraestrutura importando o repositório General Terraform GCP Modules como o source, da seguinte forma:
 
