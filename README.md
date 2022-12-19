@@ -1,4 +1,4 @@
-# General Terraform GCP Modules
+# General GCP Modules
 Módulos gerais para construção de infraestrutura no GCP com Terraform.
 
 ## Módulos disponíveis
@@ -21,6 +21,9 @@ Criação de secrets para armazenamento de dados sigilosos.
 
 ### Schedulers
 Criação de jobs para execução de rotinas por agendamento.
+
+### ReCaptcha Enterprise
+Criação de chave para ReCaptcha Enterprise, com geração de secret para armazenamento da chave criada.
 
 ## Uso
 Adicionar módulo no projeto de infraestrutura importando o repositório General Terraform GCP Modules como o source, da seguinte forma:
