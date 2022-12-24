@@ -50,6 +50,10 @@ variable "instance_deletion_protection_enabled" {
   type = bool
 }
 
+variable "instance_ipv4_enabled" {
+  type = bool
+}
+
 variable "database_version" {
   type = string
 }
