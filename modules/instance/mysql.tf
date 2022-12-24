@@ -93,3 +93,11 @@ module "mysql_instance_host_secret" {
   secret_name   = "${var.instance_name}-db-host"
   secret_value  = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
 }
+
+# MySQL instance socket secret creation
+module "mysql_instance_socket_secret" {
+  source        = "../secret"
+  project_name  = var.project_name
+  secret_name   = "${var.instance_name}-db-socket"
+  secret_value  = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.mysql_instance.name}"
+}
