@@ -2,6 +2,10 @@ variable "project_name" {
   type = string
 }
 
+variable "service_account" {
+  type = string
+}
+
 variable "default_region" {
   type = string
 }

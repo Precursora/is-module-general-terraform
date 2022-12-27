@@ -58,6 +58,7 @@ module "mysql_instance_user" {
 module "mysql_instance_start_scheduler_job" {
   source                = "../scheduler"
   project_name          = var.project_name
+  service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
   instance_name         = google_sql_database_instance.mysql_instance.name
@@ -74,6 +75,7 @@ module "mysql_instance_start_scheduler_job" {
 module "mysql_instance_stop_scheduler_job" {
   source                = "../scheduler"
   project_name          = var.project_name
+  service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
   instance_name         = google_sql_database_instance.mysql_instance.name

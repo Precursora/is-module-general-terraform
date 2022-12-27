@@ -35,7 +35,7 @@ resource "google_cloud_scheduler_job" "instance_scheduler_job" {
     body        = base64encode(local.job_body)
 
     oauth_token {
-      service_account_email = "${var.project_name}@${var.project_name}.iam.gserviceaccount.com"
+      service_account_email = var.service_account
     }
   }
 }

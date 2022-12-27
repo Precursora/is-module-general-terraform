@@ -15,5 +15,5 @@ module "recaptcha_site_key" {
   source        = "../secret"
   project_name  = var.project_name
   secret_name   = "${var.recaptcha_name}-site-key"
-  secret_value  = google_recaptcha_enterprise_key.recaptcha.id
+  secret_value  = reverse(split("/", google_recaptcha_enterprise_key.recaptcha.id))[0]
 }
