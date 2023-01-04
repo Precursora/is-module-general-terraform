@@ -31,8 +31,8 @@ resource "google_sql_database_instance" "mysql_instance" {
     }
 
     ip_configuration {
-      ipv4_enabled    = var.instance_ipv4_enabled
-      private_network = "projects/${var.project_name}/global/networks/${var.vpc_id}"
+      ipv4_enabled    = var.instance_public_ip_enabled
+      private_network = var.instance_private_ip_enabled ? "projects/${var.project_name}/global/networks/${var.vpc_id}" : null
     }
   }
 }

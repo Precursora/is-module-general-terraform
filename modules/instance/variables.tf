@@ -54,7 +54,11 @@ variable "instance_deletion_protection_enabled" {
   type = bool
 }
 
-variable "instance_ipv4_enabled" {
+variable "instance_public_ip_enabled" {
+  type = bool
+}
+
+variable "instance_private_ip_enabled" {
   type = bool
 }
 
