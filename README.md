@@ -28,16 +28,19 @@ Criação de chave para ReCaptcha Enterprise, com geração de secret para armaz
 ### Domains
 Criação de subdomínios usando domínios pré-verificados na conta.
 
+### Services Accounts
+Criação de contas de serviço com configuração de permissionamento para serviços do GCP.
+
 ## Uso
 Adicionar módulo no projeto de infraestrutura importando o repositório General Terraform GCP Modules como o source, da seguinte forma:
 
 ```terraform
 module "my_module" {
-  source = "github.com/felipemenezesdm/general-terraform-gcp-modules//modules/%module_dir%?ref=%tag_or_hash_or_branch%"
+  source = "github.com/Precursora/general-terraform-gcp-modules//modules/%module_dir%?ref=%tag_or_hash_or_branch%"
   # Variables
 }
 ```
 
 ## Links úteis
 - [Documentação de módulos do Terraform](https://developer.hashicorp.com/terraform/language/modules/develop)
-- [Template para geração de projetos de infraestrutura em Terraform](https://github.com/FelipeMenezesDM/general-infra-template)
+- [Template para geração de projetos de infraestrutura em Terraform](https://github.com/Precursora/general-infra-template)
