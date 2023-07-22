@@ -33,11 +33,11 @@ Adicionar módulo no projeto de infraestrutura importando o repositório General
 
 ```terraform
 module "my_module" {
-  source = "github.com/felipemenezesdm/general-terraform-gcp-modules//modules/%module_dir%?ref=%tag_or_hash_or_branch%"
+  source = "github.com/Precursora/general-terraform-gcp-modules//modules/%module_dir%?ref=%tag_or_hash_or_branch%"
   # Variables
 }
 ```
 
 ## Links úteis
 - [Documentação de módulos do Terraform](https://developer.hashicorp.com/terraform/language/modules/develop)
-- [Template para geração de projetos de infraestrutura em Terraform](https://github.com/FelipeMenezesDM/general-infra-template)
+- [Template para geração de projetos de infraestrutura em Terraform](https://github.com/Precursora/general-infra-template)
