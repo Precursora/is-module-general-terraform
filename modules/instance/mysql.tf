@@ -7,6 +7,7 @@ provider "google" {
 
 # MySQL instance creation
 resource "google_sql_database_instance" "mysql_instance" {
+  labels              = merge(local.default_labels, var.custom_labels)
   provider            = google
   name                = var.instance_name
   region              = var.default_region
@@ -39,11 +40,20 @@ resource "google_sql_database_instance" "mysql_instance" {
 
 # MySQL databases creation
 module "mysql_databases" {
-  count               = length(var.databases_names)
-  source              = "../database"
-  instance_name       = google_sql_database_instance.mysql_instance.name
-  database_collation  = var.database_collation
-  database_name       = var.databases_names[count.index]
+  count              = length(var.databases_names)
+  source             = "../database"
+  instance_name      = google_sql_database_instance.mysql_instance.name
+  database_collation = var.database_collation
+  database_name      = var.databases_names[count.index]
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
 
 # MySQL instance user creation
@@ -52,6 +62,16 @@ module "mysql_instance_user" {
   project_name      = var.project_name
   instance_name     = google_sql_database_instance.mysql_instance.name
   instance_username = var.instance_username
+  secret_name       = google_sql_database_instance.mysql_instance.name
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
 
 # MySQL job to start instance creation
@@ -69,6 +89,15 @@ module "mysql_instance_start_scheduler_job" {
   job_time_zone         = var.instance_job_time_zone
   job_attempt_deadline  = var.instance_job_attempt_deadline
   job_paused            = var.instance_job_start_event_paused
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
 
 # MySQL job to stop instance creation
@@ -86,6 +115,15 @@ module "mysql_instance_stop_scheduler_job" {
   job_time_zone         = var.instance_job_time_zone
   job_attempt_deadline  = var.instance_job_attempt_deadline
   job_paused            = var.instance_job_stop_event_paused
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
 
 # MySQL instance host secret creation
@@ -94,6 +132,15 @@ module "mysql_instance_host_secret" {
   project_name  = var.project_name
   secret_name   = "${var.instance_name}-db-host"
   secret_value  = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
 
 # MySQL instance socket secret creation
@@ -102,4 +149,13 @@ module "mysql_instance_socket_secret" {
   project_name  = var.project_name
   secret_name   = "${var.instance_name}-db-socket"
   secret_value  = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.mysql_instance.name}"
+
+  owner_email   = var.owner_email
+  tech_email    = var.tech_email
+  team_email    = var.team_email
+  support_email = var.support_email
+  product       = var.product
+  channel       = var.channel
+  repository    = var.repository
+  custom_labels = var.custom_labels
 }
