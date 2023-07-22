@@ -28,6 +28,9 @@ Criação de chave para ReCaptcha Enterprise, com geração de secret para armaz
 ### Domains
 Criação de subdomínios usando domínios pré-verificados na conta.
 
+### Services Accounts
+Criação de contas de serviço com configuração de permissionamento para serviços do GCP.
+
 ## Uso
 Adicionar módulo no projeto de infraestrutura importando o repositório General Terraform GCP Modules como o source, da seguinte forma:
 
