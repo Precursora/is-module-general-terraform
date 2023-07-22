@@ -1,5 +1,6 @@
 # Secret creation
 resource "google_secret_manager_secret" "secret" {
+  labels    = merge(local.default_labels, var.custom_labels)
   project   = var.project_name
   secret_id = var.secret_name
 

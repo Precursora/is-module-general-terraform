@@ -9,3 +9,7 @@ variable "instance_name" {
 variable "instance_username" {
   type = string
 }
+
+variable "secret_name" {
+  type = string
+}
