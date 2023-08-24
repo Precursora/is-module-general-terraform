@@ -43,4 +43,4 @@ module "my_module" {
 
 ## Links úteis
 - [Documentação de módulos do Terraform](https://developer.hashicorp.com/terraform/language/modules/develop)
-- [Template para geração de projetos de infraestrutura em Terraform para GCP](https://github.com/precursora/is-template-general-terraform-gcp-infra)
+- [Template para geração de projetos de infraestrutura em Terraform para GCP](https://github.com/precursora/is-template-gcp-general-terraform-infra)
