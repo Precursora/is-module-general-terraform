@@ -1,6 +1,5 @@
 # Service account creation
 resource "google_service_account" "service_account" {
-  labels       = var.labels
   project      = var.project_name
   account_id   = var.account_id
   display_name = var.account_name
