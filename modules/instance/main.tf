@@ -61,7 +61,6 @@ module "sql_instance_user" {
 # SQL job to start instance creation
 module "sql_instance_start_scheduler_job" {
   source                = "../scheduler"
-  labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region
@@ -79,7 +78,6 @@ module "sql_instance_start_scheduler_job" {
 # SQL job to stop instance creation
 module "sql_instance_stop_scheduler_job" {
   source                = "../scheduler"
-  labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region
