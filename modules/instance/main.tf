@@ -5,8 +5,8 @@ provider "google" {
   project = var.project_name
 }
 
-# MySQL instance creation
-resource "google_sql_database_instance" "mysql_instance" {
+# Instance creation
+resource "google_sql_database_instance" "sql_instance" {
   labels              = var.labels
   provider            = google
   name                = var.instance_name
@@ -38,37 +38,37 @@ resource "google_sql_database_instance" "mysql_instance" {
   }
 }
 
-# MySQL databases creation
-module "mysql_databases" {
+# SQL databases creation
+module "sql_databases" {
   count              = length(var.databases_names)
   source             = "../database"
   labels             = var.labels
-  instance_name      = google_sql_database_instance.mysql_instance.name
+  instance_name      = google_sql_database_instance.sql_instance.name
   database_collation = var.database_collation
   database_name      = var.databases_names[count.index]
 }
 
-# MySQL instance user creation
-module "mysql_instance_user" {
+# SQL instance user creation
+module "sql_instance_user" {
   source            = "../user"
   labels            = var.labels
   project_name      = var.project_name
-  instance_name     = google_sql_database_instance.mysql_instance.name
+  instance_name     = google_sql_database_instance.sql_instance.name
   instance_username = var.instance_username
-  secret_name       = google_sql_database_instance.mysql_instance.name
+  secret_name       = google_sql_database_instance.sql_instance.name
 }
 
-# MySQL job to start instance creation
-module "mysql_instance_start_scheduler_job" {
+# SQL job to start instance creation
+module "sql_instance_start_scheduler_job" {
   source                = "../scheduler"
   labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
-  instance_name         = google_sql_database_instance.mysql_instance.name
-  job_name              = "${google_sql_database_instance.mysql_instance.name}-start-job"
-  job_description       = "Job to start MySQL instance"
+  instance_name         = google_sql_database_instance.sql_instance.name
+  job_name              = "${google_sql_database_instance.sql_instance.name}-start-job"
+  job_description       = "Job to start SQL instance"
   job_activation_policy = "ALWAYS"
   job_start_cron        = var.instance_job_start_event_cron
   job_time_zone         = var.instance_job_time_zone
@@ -76,17 +76,17 @@ module "mysql_instance_start_scheduler_job" {
   job_paused            = var.instance_job_start_event_paused
 }
 
-# MySQL job to stop instance creation
-module "mysql_instance_stop_scheduler_job" {
+# SQL job to stop instance creation
+module "sql_instance_stop_scheduler_job" {
   source                = "../scheduler"
   labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
-  instance_name         = google_sql_database_instance.mysql_instance.name
-  job_name              = "${google_sql_database_instance.mysql_instance.name}-stop-job"
-  job_description       = "Job to stop MySQL instance"
+  instance_name         = google_sql_database_instance.sql_instance.name
+  job_name              = "${google_sql_database_instance.sql_instance.name}-stop-job"
+  job_description       = "Job to stop SQL instance"
   job_activation_policy = "NEVER"
   job_start_cron        = var.instance_job_stop_event_cron
   job_time_zone         = var.instance_job_time_zone
@@ -94,20 +94,20 @@ module "mysql_instance_stop_scheduler_job" {
   job_paused            = var.instance_job_stop_event_paused
 }
 
-# MySQL instance host secret creation
-module "mysql_instance_host_secret" {
+# SQL instance host secret creation
+module "sql_instance_host_secret" {
   source        = "../secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.instance_name}-db-host"
-  secret_value  = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
+  secret_value  = google_sql_database_instance.sql_instance.ip_address.0.ip_address
 }
 
-# MySQL instance socket secret creation
-module "mysql_instance_socket_secret" {
+# SQL instance socket secret creation
+module "sql_instance_socket_secret" {
   source        = "../secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.instance_name}-db-socket"
-  secret_value  = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.mysql_instance.name}"
+  secret_value  = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.sql_instance.name}"
 }
