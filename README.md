@@ -2,8 +2,8 @@
 Módulos gerais para construção de infraestrutura no GCP com Terraform.
 
 ## Módulos disponíveis
-### MySQL Instances
-Criação de instâncias MySQL, com vários recursos adicionais:
+### SQL Instances
+Criação de instâncias SQL, com vários recursos adicionais:
 
 - Bases de dados múltiplas.
 - Usuários e senhas para a conexão.
