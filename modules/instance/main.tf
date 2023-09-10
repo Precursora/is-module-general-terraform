@@ -50,6 +50,7 @@ module "sql_databases" {
 # SQL instance user creation
 module "sql_instance_user" {
   source            = "../user"
+  labels            = var.labels
   project_name      = var.project_name
   instance_name     = google_sql_database_instance.sql_instance.name
   instance_username = var.instance_username
