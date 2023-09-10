@@ -4,6 +4,7 @@ variable "project_name" {
 
 variable "service_account" {
   type = string
+  default = "default-sql-scheduler"
 }
 
 variable "vpc_id" {
