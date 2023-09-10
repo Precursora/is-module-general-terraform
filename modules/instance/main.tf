@@ -7,7 +7,6 @@ provider "google" {
 
 # Instance creation
 resource "google_sql_database_instance" "sql_instance" {
-  user_labels         = var.labels
   provider            = google
   name                = var.instance_name
   region              = var.default_region
@@ -19,6 +18,7 @@ resource "google_sql_database_instance" "sql_instance" {
   }
 
   settings {
+    user_labels       = var.labels
     tier              = var.instance_type
     disk_type         = var.instance_disk_type
     disk_size         = var.instance_disk_size
@@ -42,7 +42,6 @@ resource "google_sql_database_instance" "sql_instance" {
 module "sql_databases" {
   count              = length(var.databases_names)
   source             = "../database"
-  labels             = var.labels
   instance_name      = google_sql_database_instance.sql_instance.name
   database_collation = var.database_collation
   database_name      = var.databases_names[count.index]
@@ -61,7 +60,6 @@ module "sql_instance_user" {
 # SQL job to start instance creation
 module "sql_instance_start_scheduler_job" {
   source                = "../scheduler"
-  labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region
@@ -79,7 +77,6 @@ module "sql_instance_start_scheduler_job" {
 # SQL job to stop instance creation
 module "sql_instance_stop_scheduler_job" {
   source                = "../scheduler"
-  labels                = var.labels
   project_name          = var.project_name
   service_account       = var.service_account
   default_region        = var.default_region

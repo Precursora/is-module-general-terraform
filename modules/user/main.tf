@@ -1,6 +1,5 @@
 # User random password
 resource "random_password" "sql_user_password" {
-  labels           = var.labels
   length           = 12
   special          = true
   override_special = "!#$%&*()-_=+[]{}<>:?"
@@ -8,7 +7,6 @@ resource "random_password" "sql_user_password" {
 
 # SQL user creation
 resource "google_sql_user" "sql_user_username" {
-  labels    = var.labels
   name      = var.instance_username
   instance  = var.instance_name
   password  = random_password.sql_user_password.result

@@ -17,7 +17,6 @@ provider "google" {
 # Job creation
 resource "google_cloud_scheduler_job" "instance_scheduler_job" {
   provider         = google
-  labels           = var.labels
   name             = var.job_name
   description      = var.job_description
   schedule         = var.job_start_cron
