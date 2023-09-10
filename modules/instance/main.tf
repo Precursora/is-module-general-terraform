@@ -7,7 +7,7 @@ provider "google" {
 
 # Instance creation
 resource "google_sql_database_instance" "sql_instance" {
-  labels              = var.labels
+  user_labels         = var.labels
   provider            = google
   name                = var.instance_name
   region              = var.default_region
