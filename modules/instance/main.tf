@@ -7,7 +7,6 @@ provider "google" {
 
 # Instance creation
 resource "google_sql_database_instance" "sql_instance" {
-  user_labels         = var.labels
   provider            = google
   name                = var.instance_name
   region              = var.default_region
@@ -19,6 +18,7 @@ resource "google_sql_database_instance" "sql_instance" {
   }
 
   settings {
+    user_labels       = var.labels
     tier              = var.instance_type
     disk_type         = var.instance_disk_type
     disk_size         = var.instance_disk_size
