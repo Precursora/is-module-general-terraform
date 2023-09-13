@@ -18,3 +18,11 @@ variable "subdomain" {
 variable "service_name" {
   type = string
 }
+
+variable "cloudflare_zone_id" {
+  type = string
+}
+
+variable "cloudflare_provider_api_token" {
+  type = string
+}
