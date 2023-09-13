@@ -2,7 +2,7 @@
 resource "google_cloud_run_domain_mapping" "subdomain" {
   project  = var.project_name
   location = var.project_default_location
-  name     = "${var.subdomain}.${var.project_default_verified_domain}"
+  name     = var.project_default_verified_domain
 
   timeouts {
     create = "20s"
