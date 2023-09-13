@@ -4,6 +4,7 @@ variable "project_name" {
 
 variable "project_default_location" {
   type = string
+  default = "us-central1"
 }
 
 variable "project_default_verified_domain" {
