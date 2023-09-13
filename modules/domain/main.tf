@@ -18,3 +18,8 @@ resource "google_cloud_run_domain_mapping" "subdomain" {
     route_name = var.service_name
   }
 }
+
+module "cname_dns_record" {
+  source = "./cloudflare"
+  subdomain = var.subdomain
+}
