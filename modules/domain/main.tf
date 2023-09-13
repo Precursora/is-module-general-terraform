@@ -1,6 +1,5 @@
 # Domain mapping creation
 resource "google_cloud_run_domain_mapping" "subdomain" {
-  labels   = var.labels
   project  = var.project_name
   location = var.project_default_location
   name     = "${var.subdomain}.${var.project_default_verified_domain}"
@@ -11,6 +10,7 @@ resource "google_cloud_run_domain_mapping" "subdomain" {
   }
 
   metadata {
+    labels = var.labels
     namespace = var.project_name
   }
 
