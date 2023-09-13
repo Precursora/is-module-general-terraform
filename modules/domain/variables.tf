@@ -21,10 +21,8 @@ variable "service_name" {
 
 variable "cloudflare_zone_id" {
   type = string
-  default = ""
 }
 
 variable "cloudflare_provider_api_token" {
   type = string
-  default = ""
 }
