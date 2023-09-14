@@ -89,26 +89,37 @@ variable "databases_names" {
   type = list(string)
 }
 
+variable "instance_jobs_enable_creation" {
+  type = bool
+  default = true
+}
+
 variable "instance_job_time_zone" {
   type = string
+  default = "America/Belem"
 }
 
 variable "instance_job_attempt_deadline" {
   type = string
+  default = "90s"
 }
 
 variable "instance_job_start_event_cron" {
   type = string
+  default = "0 7 * * 1-5" # At 07:00 AM, Monday through Friday
 }
 
 variable "instance_job_start_event_paused" {
   type = bool
+  default = false
 }
 
 variable "instance_job_stop_event_cron" {
   type = string
+  default = "0 20 * * *" # At 20:00 PM
 }
 
 variable "instance_job_stop_event_paused" {
   type = bool
+  default = false
 }

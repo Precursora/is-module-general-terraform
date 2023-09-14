@@ -16,7 +16,16 @@ variable "default_zone" {
   default = "us-central1-a"
 }
 
-variable "instance_name" {
+variable "job_enable_creation" {
+  type = bool
+  default = true
+}
+
+variable "job_http_method" {
+  type = string
+}
+
+variable "job_uri" {
   type = string
 }
 
