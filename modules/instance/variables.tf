@@ -89,26 +89,61 @@ variable "databases_names" {
   type = list(string)
 }
 
+variable "instance_job_create" {
+  type = bool
+  default = true
+}
+
 variable "instance_job_time_zone" {
   type = string
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_time_zone != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_time_zone was not provided"
+  }
 }
 
 variable "instance_job_attempt_deadline" {
   type = string
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_attempt_deadline != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_attempt_deadline was not provided"
+  }
 }
 
 variable "instance_job_start_event_cron" {
   type = string
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_start_event_cron != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_start_event_cron was not provided"
+  }
 }
 
 variable "instance_job_start_event_paused" {
   type = bool
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_start_event_paused != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_start_event_paused was not provided"
+  }
 }
 
 variable "instance_job_stop_event_cron" {
   type = string
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_stop_event_cron != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_stop_event_cron was not provided"
+  }
 }
 
 variable "instance_job_stop_event_paused" {
   type = bool
+  default = ""
+  validation {
+    condition = (var.instance_job_create && var.instance_job_stop_event_paused != "") || !var.instance_job_create
+    error_message = "Required variable instance_job_stop_event_paused was not provided"
+  }
 }
