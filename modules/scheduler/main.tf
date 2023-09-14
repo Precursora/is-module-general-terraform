@@ -15,8 +15,9 @@ provider "google" {
 }
 
 # Job creation
-resource "google_cloud_scheduler_job" "instance_scheduler_job" {
+resource "google_cloud_scheduler_job" "scheduler_job" {
   provider         = google
+  count            = var.job_enable_creation ? 1 : 0
   name             = var.job_name
   description      = var.job_description
   schedule         = var.job_start_cron
@@ -30,8 +31,8 @@ resource "google_cloud_scheduler_job" "instance_scheduler_job" {
   }
 
   http_target {
-    http_method = "PATCH"
-    uri         = "https://sqladmin.googleapis.com/v1/projects/${var.project_name}/instances/${var.instance_name}"
+    http_method = var.job_http_method
+    uri         = var.job_uri
     body        = base64encode(local.job_body)
 
     oauth_token {

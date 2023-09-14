@@ -89,7 +89,7 @@ variable "databases_names" {
   type = list(string)
 }
 
-variable "instance_jobs_create" {
+variable "instance_job_enable_creation" {
   type = bool
   default = true
 }
