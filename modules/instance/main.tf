@@ -64,6 +64,7 @@ module "sql_instance_start_scheduler_job" {
   service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
+  job_enable_creation   = var.instance_jobs_enable_creation
   job_http_method       = "PATCH"
   job_uri               = "https://sqladmin.googleapis.com/v1/projects/${var.project_name}/instances/${google_sql_database_instance.sql_instance.name}"
   job_name              = "${google_sql_database_instance.sql_instance.name}-start-job"
@@ -82,7 +83,7 @@ module "sql_instance_stop_scheduler_job" {
   service_account       = var.service_account
   default_region        = var.default_region
   default_zone          = var.default_zone
-  job_enable_creation   = var.instance_job_enable_creation
+  job_enable_creation   = var.instance_jobs_enable_creation
   job_http_method       = "PATCH"
   job_uri               = "https://sqladmin.googleapis.com/v1/projects/${var.project_name}/instances/${google_sql_database_instance.sql_instance.name}"
   job_name              = "${google_sql_database_instance.sql_instance.name}-stop-job"
