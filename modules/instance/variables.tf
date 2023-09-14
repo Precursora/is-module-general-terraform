@@ -89,55 +89,37 @@ variable "databases_names" {
   type = list(string)
 }
 
-variable "instance_job_create" {
+variable "instance_jobs_create" {
   type = bool
   default = true
 }
 
 variable "instance_job_time_zone" {
   type = string
-  validation {
-    condition = (var.instance_job_create && var.instance_job_time_zone != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_time_zone was not provided"
-  }
+  default = "America/Belem"
 }
 
 variable "instance_job_attempt_deadline" {
   type = string
-  validation {
-    condition = (var.instance_job_create && var.instance_job_attempt_deadline != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_attempt_deadline was not provided"
-  }
+  default = "90s"
 }
 
 variable "instance_job_start_event_cron" {
   type = string
-  validation {
-    condition = (var.instance_job_create && var.instance_job_start_event_cron != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_start_event_cron was not provided"
-  }
+  default = "0 6 * * 1-5" # At 06:00 AM, Monday through Friday
 }
 
 variable "instance_job_start_event_paused" {
   type = bool
-  validation {
-    condition = (var.instance_job_create && var.instance_job_start_event_paused != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_start_event_paused was not provided"
-  }
+  default = false
 }
 
 variable "instance_job_stop_event_cron" {
   type = string
-  validation {
-    condition = (var.instance_job_create && var.instance_job_stop_event_cron != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_stop_event_cron was not provided"
-  }
+  default = "0 0 * * *" # At 12:00 AM
 }
 
 variable "instance_job_stop_event_paused" {
   type = bool
-  validation {
-    condition = (var.instance_job_create && var.instance_job_stop_event_paused != "") || !var.instance_job_create
-    error_message = "Required variable instance_job_stop_event_paused was not provided"
-  }
+  default = false
 }

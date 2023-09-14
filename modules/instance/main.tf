@@ -59,6 +59,7 @@ module "sql_instance_user" {
 
 # SQL job to start instance creation
 module "sql_instance_start_scheduler_job" {
+  count                 = var.instance_jobs_create ? 1 : 0
   source                = "../scheduler"
   project_name          = var.project_name
   service_account       = var.service_account
@@ -76,6 +77,7 @@ module "sql_instance_start_scheduler_job" {
 
 # SQL job to stop instance creation
 module "sql_instance_stop_scheduler_job" {
+  count                 = var.instance_jobs_create ? 1 : 0
   source                = "../scheduler"
   project_name          = var.project_name
   service_account       = var.service_account
