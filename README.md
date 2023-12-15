@@ -31,6 +31,9 @@ Criação de subdomínios usando domínios pré-verificados na conta.
 ### Services Accounts
 Criação de contas de serviço com configuração de permissionamento para serviços do GCP.
 
+### Storage
+Criação de buckets no Cloud Storage
+
 ## Uso
 Adicionar módulo no projeto de infraestrutura importando o repositório General Terraform GCP Modules como o source, da seguinte forma:
 
