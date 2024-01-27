@@ -1,7 +1,5 @@
 variable "subdomain" {
   type = string
-  nullable = true
-  default = null
 }
 
 variable "cloudflare_zone_id" {
@@ -22,6 +20,5 @@ variable "record_value" {
 
 variable "record_comment" {
   type = string
-  nullable = true
-  default = null
+  default = ""
 }
