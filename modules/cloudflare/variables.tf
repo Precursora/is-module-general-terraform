@@ -17,3 +17,9 @@ variable "record_type" {
 variable "record_value" {
   type = string
 }
+
+variable "record_comment" {
+  type = string
+  nullable = true
+  default = null
+}

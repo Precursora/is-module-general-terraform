@@ -34,11 +34,11 @@ resource "google_storage_bucket_iam_member" "member" {
 }
 
 module "cname_dns_record" {
-  depends_on                    = [google_storage_bucket.website_bucket]
   source                        = "../cloudflare"
   subdomain                     = var.subdomain
   record_value                  = "c.storage.googleapis.com"
   record_type                   = "CNAME"
+  record_comment                = "Bucket GCS: ${google_storage_bucket.website_bucket.name}"
   cloudflare_zone_id            = var.cloudflare_zone_id
   cloudflare_provider_api_token = var.cloudflare_provider_api_token
 }

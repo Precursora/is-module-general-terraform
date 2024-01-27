@@ -4,4 +4,5 @@ resource "cloudflare_record" "record" {
   name    = var.subdomain
   type    = var.record_type
   value   = var.record_value
+  comment = var.record_comment
 }
