@@ -37,7 +37,8 @@ variable "website_subdomain" {
 
 variable "website_main_page_suffix" {
   type = string
-  default = "index.html"
+  nullable = true
+  default = null
 }
 
 variable "website_not_found_page" {
