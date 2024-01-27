@@ -37,14 +37,12 @@ variable "website_subdomain" {
 
 variable "website_main_page_suffix" {
   type = string
-  nullable = true
-  default = null
+  default = "index.html"
 }
 
 variable "website_not_found_page" {
   type = string
-  nullable = true
-  default = null
+  default = "404.html"
 }
 
 variable "cloudflare_zone_id" {
