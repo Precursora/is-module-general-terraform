@@ -35,12 +35,11 @@ resource "google_storage_bucket_iam_member" "member" {
 
 # Cloudflare DNS record to website bucket subdomain
 module "cname_dns_record" {
-  for_each                      = google_storage_bucket.website_bucket
   source                        = "../cloudflare"
   subdomain                     = var.website_subdomain
   record_value                  = "c.storage.googleapis.com"
   record_type                   = "CNAME"
-  record_comment                = "Bucket GCS: ${each.value.name}"
+  record_comment                = "Bucket GCS: ${google_storage_bucket.website_bucket.name}"
   cloudflare_zone_id            = var.cloudflare_zone_id
   cloudflare_provider_api_token = var.cloudflare_provider_api_token
 }
