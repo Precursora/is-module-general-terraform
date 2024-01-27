@@ -1,20 +1,8 @@
 # Bucket creation
 resource "google_storage_bucket" "bucket" {
-  count         = var.website_domain != null ? 0 : 1
   labels        = var.labels
   project       = var.project_name
-  name          = var.bucket_name
-  location      = var.location
-  force_destroy = var.force_destroy
-  storage_class = var.storage_class
-}
-
-# Website bucket creation
-resource "google_storage_bucket" "website_bucket" {
-  count         = var.website_domain != null ? 1 : 0
-  labels        = var.labels
-  project       = var.project_name
-  name          = "${var.website_subdomain}.${var.website_domain}"
+  name          = var.website_domain != null ? "${var.website_subdomain}.${var.website_domain}" : var.bucket_name
   location      = var.location
   force_destroy = var.force_destroy
   storage_class = var.storage_class
@@ -27,8 +15,8 @@ resource "google_storage_bucket" "website_bucket" {
 
 # Public access permition to website bucket
 resource "google_storage_bucket_iam_member" "member" {
-  for_each   = google_storage_bucket.website_bucket
-  bucket     = each.value.name
+  count      = var.website_domain != null ? 1 : 0
+  bucket     = google_storage_bucket.bucket.name
   role       = "roles/storage.objectViewer"
   member     = "allUsers"
 }
