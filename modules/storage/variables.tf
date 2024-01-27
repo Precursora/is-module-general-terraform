@@ -4,6 +4,12 @@ variable "project_name" {
 
 variable "bucket_name" {
   type = string
+  nullable = true
+  default = null
+  validation {
+    condition = var.website_domain == null && var.bucket_name == null
+    error_message = "Variável obrigatória para criação bucket"
+  }
 }
 
 variable "location" {
@@ -21,9 +27,20 @@ variable "storage_class" {
   default = "STANDARD"
 }
 
-variable "is_website_bucket" {
-  type = bool
-  default = false
+variable "website_domain" {
+  type = string
+  nullable = true
+  default = null
+}
+
+variable "website_subdomain" {
+  type = string
+  nullable = true
+  default = null
+  validation {
+    condition = var.website_domain != null && var.website_subdomain == null
+    error_message = "Variável obrigatória para criação de website buckets"
+  }
 }
 
 variable "website_main_page_suffix" {
@@ -37,20 +54,22 @@ variable "website_not_found_page" {
   default = null
 }
 
-variable "subdomain" {
-  type = string
-  nullable = true
-  default = null
-}
-
 variable "cloudflare_zone_id" {
   type = string
   nullable = true
   default = null
+  validation {
+    condition = var.website_domain != null && var.cloudflare_zone_id == null
+    error_message = "Variável obrigatória para criação de website buckets"
+  }
 }
 
 variable "cloudflare_provider_api_token" {
   type = string
   nullable = true
   default = null
+  validation {
+    condition = var.website_domain != null && var.cloudflare_provider_api_token == null
+    error_message = "Variável obrigatória para criação de website buckets"
+  }
 }
