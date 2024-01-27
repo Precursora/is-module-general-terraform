@@ -27,19 +27,20 @@ resource "google_storage_bucket" "website_bucket" {
 
 # Public access permition to website bucket
 resource "google_storage_bucket_iam_member" "member" {
-  depends_on = [google_storage_bucket.website_bucket[0]]
-  bucket     = google_storage_bucket.website_bucket[0].name
+  for_each   = google_storage_bucket.website_bucket
+  bucket     = each.value.name
   role       = "roles/storage.objectViewer"
   member     = "allUsers"
 }
 
 # Cloudflare DNS record to website bucket subdomain
 module "cname_dns_record" {
+  for_each                      = google_storage_bucket.website_bucket
   source                        = "../cloudflare"
   subdomain                     = var.website_subdomain
   record_value                  = "c.storage.googleapis.com"
   record_type                   = "CNAME"
-  record_comment                = "Bucket GCS: ${google_storage_bucket.website_bucket[0].name}"
+  record_comment                = "Bucket GCS: ${each.value.name}"
   cloudflare_zone_id            = var.cloudflare_zone_id
   cloudflare_provider_api_token = var.cloudflare_provider_api_token
 }
