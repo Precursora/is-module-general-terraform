@@ -33,20 +33,24 @@ variable "website_main_page_suffix" {
 
 variable "website_not_found_page" {
   type = string
+  nullable = true
   default = null
 }
 
 variable "subdomain" {
   type = string
+  nullable = true
   default = null
 }
 
 variable "cloudflare_zone_id" {
   type = string
+  nullable = true
   default = null
 }
 
 variable "cloudflare_provider_api_token" {
   type = string
+  nullable = true
   default = null
 }
