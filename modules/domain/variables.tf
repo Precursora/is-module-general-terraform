@@ -7,10 +7,6 @@ variable "default_region" {
   default = "us-central1"
 }
 
-variable "environment" {
-  type = string
-}
-
 variable "project_default_verified_domain" {
   type = string
 }
