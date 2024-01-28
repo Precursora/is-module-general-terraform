@@ -7,6 +7,10 @@ variable "location" {
   default = "US"
 }
 
+variable "environment" {
+  type = string
+}
+
 variable "force_destroy" {
   type = bool
   default = false
@@ -31,7 +35,6 @@ variable "website_main_page_suffix" {
 
 variable "website_not_found_page" {
   type = string
-  default = "404.html"
 }
 
 variable "cloudflare_zone_id" {

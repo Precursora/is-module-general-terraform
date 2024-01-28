@@ -1,7 +1,7 @@
 # Domain mapping creation
 resource "google_cloud_run_domain_mapping" "subdomain" {
   project  = var.project_name
-  location = var.project_default_location
+  location = var.default_region
   name     = "${var.subdomain}.${var.project_default_verified_domain}"
 
   timeouts {
@@ -26,4 +26,5 @@ module "cname_dns_record" {
   record_type = "CNAME"
   cloudflare_zone_id = var.cloudflare_zone_id
   cloudflare_provider_api_token = var.cloudflare_provider_api_token
+  record_comment = "Projeto: ${var.project_name} | Ambiente: ${var.environment} | Serviço: CloudRun"
 }
