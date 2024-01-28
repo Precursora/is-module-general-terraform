@@ -2,9 +2,13 @@ variable "project_name" {
   type = string
 }
 
-variable "project_default_location" {
+variable "default_region" {
   type = string
   default = "us-central1"
+}
+
+variable "environment" {
+  type = string
 }
 
 variable "project_default_verified_domain" {
