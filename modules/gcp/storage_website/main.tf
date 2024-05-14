@@ -22,7 +22,7 @@ resource "google_storage_bucket_iam_member" "member" {
 
 # Cloudflare DNS record to website bucket subdomain
 module "cname_dns_record" {
-  source                        = "../cloudflare"
+  source                        = "../../cloudflare"
   subdomain                     = var.website_subdomain
   record_value                  = "c.storage.googleapis.com"
   record_type                   = "CNAME"
