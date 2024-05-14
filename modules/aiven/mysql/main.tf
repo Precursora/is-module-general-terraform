@@ -43,7 +43,7 @@ resource "aiven_mysql_user" "user" {
 
 # SQL instance host secret creation
 module "sql_instance_host_secret" {
-  source        = "../secret"
+  source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.aiven_service_name}-db-host"
@@ -52,7 +52,7 @@ module "sql_instance_host_secret" {
 
 # SQL user username secret creation
 module "user_username_secret" {
-  source        = "../secret"
+  source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.aiven_service_name}-db-username"
@@ -62,7 +62,7 @@ module "user_username_secret" {
 # SQL user password secret creation
 module "user_password_secret" {
   depends_on    = [aiven_mysql_user.user]
-  source        = "../secret"
+  source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.aiven_service_name}-db-password"
