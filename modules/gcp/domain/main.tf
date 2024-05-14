@@ -20,7 +20,7 @@ resource "google_cloud_run_domain_mapping" "subdomain" {
 }
 
 module "cname_dns_record" {
-  source = "../cloudflare"
+  source = "../../cloudflare"
   subdomain = var.subdomain
   record_value = "ghs.googlehosted.com"
   record_type = "CNAME"
