@@ -56,15 +56,14 @@ module "user_username_secret" {
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.aiven_service_name}-db-username"
-  secret_value  = google_sql_user.sql_user_username.name
+  secret_value  = aiven_mysql_user.user.username
 }
 
 # SQL user password secret creation
 module "user_password_secret" {
-  depends_on    = [aiven_mysql_user.user]
   source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.aiven_service_name}-db-password"
-  secret_value  = random_password.sql_user_password.result
+  secret_value  = aiven_mysql_user.user.password
 }
