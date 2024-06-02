@@ -1,11 +1,13 @@
 resource "google_firebase_hosting_site" "default" {
-  project = var.project_name
-  site_id = var.website_subdomain
+  provider = google-beta
+  project  = var.project_name
+  site_id  = var.website_subdomain
 }
 
 resource "google_firebase_hosting_custom_domain" "default" {
-  project = var.project_name
-  site_id = google_firebase_hosting_site.default.site_id
+  provider      = google-beta
+  project       = var.project_name
+  site_id       = google_firebase_hosting_site.default.site_id
   custom_domain = "${var.website_subdomain}.${var.website_domain}"
 }
 
