@@ -21,10 +21,9 @@ resource "google_cloud_run_domain_mapping" "subdomain" {
 
 module "cname_dns_record" {
   source = "../../cloudflare"
+  domain = var.domain
   subdomain = var.subdomain
   record_value = "ghs.googlehosted.com"
   record_type = "CNAME"
-  cloudflare_zone_id = var.cloudflare_zone_id
-  cloudflare_provider_api_token = var.cloudflare_provider_api_token
   record_comment = "Projeto: ${var.project_name} | Serviço: CloudRun"
 }
