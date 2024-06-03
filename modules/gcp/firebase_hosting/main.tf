@@ -2,7 +2,7 @@
 resource "google_firebase_hosting_site" "default" {
   provider = google-beta
   project  = var.project_name
-  site_id  = var.website_subdomain
+  site_id  = var.website_name
 }
 
 # Custom domain creation
