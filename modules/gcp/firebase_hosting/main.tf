@@ -15,11 +15,10 @@ resource "google_firebase_hosting_custom_domain" "default" {
 
 # Cloudflare DNS record to website subdomain
 module "cname_dns_record" {
-  source                        = "../../cloudflare"
-  subdomain                     = var.website_subdomain
-  record_value                  = "${google_firebase_hosting_site.default.site_id}.web.app"
-  record_type                   = "CNAME"
-  record_comment                = "Projeto: ${var.project_name} | Serviço: Firebase Hosting"
-  cloudflare_zone_id            = var.cloudflare_zone_id
-  cloudflare_provider_api_token = var.cloudflare_provider_api_token
+  source         = "../../cloudflare"
+  domain         = var.website_domain
+  subdomain      = var.website_subdomain
+  record_value   = "${google_firebase_hosting_site.default.site_id}.web.app"
+  record_type    = "CNAME"
+  record_comment = "Projeto: ${var.project_name} | Serviço: Firebase Hosting"
 }

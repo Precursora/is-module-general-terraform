@@ -1,13 +1,24 @@
-variable "subdomain" {
+variable "domain" {
   type = string
 }
 
-variable "cloudflare_zone_id" {
+variable "subdomain" {
   type = string
 }
 
 variable "cloudflare_provider_api_token" {
   type = string
+  default = ""
+}
+
+variable "cloudflare_provider_zone_id_precursoracombr" {
+  type = string
+  default = ""
+}
+
+variable "cloudflare_provider_zone_id_felipemenezescombr" {
+  type = string
+  default = ""
 }
 
 variable "record_type" {
