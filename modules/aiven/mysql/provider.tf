@@ -8,5 +8,9 @@ terraform {
 }
 
 provider "aiven" {
-  api_token = var.aiven_provider_api_token
+  api_token = data.external.env_var.result["aiven_provider_api_token"]
+}
+
+data "external" "env_var" {
+  program = ["bash", "${path.root}/get_env_vars.sh"]
 }
