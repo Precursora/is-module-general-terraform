@@ -8,10 +8,5 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = data.github_actions_secrets.gh_secrets2.CLOUDFLARE_API_TOKEN
-}
-
-data "github_actions_secrets" "gh_secrets2" {
-  provider = github
-  name = "is-module-general-deploy-actions"
+  api_token = data.github_actions_secrets.gh_secrets["CLOUDFLARE_API_TOKEN"]
 }
