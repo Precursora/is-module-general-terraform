@@ -8,5 +8,9 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = var.cloudflare_provider_api_token
+  api_token = data.external.env_var.result["cloudflare_api_token"]
+}
+
+data "external" "env_var" {
+  program = ["bash", "${path.root}/get_env_vars.sh"]
 }
