@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = data.github_actions_secrets.gh_secrets["CLOUDFLARE_API_TOKEN"]
+  api_token = "uYSkUR4ZdPg0aWw0cHR2dsJ9I7XnLVVyKJEmTZB_"
 }
