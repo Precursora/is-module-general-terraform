@@ -13,10 +13,6 @@ resource "google_sql_database_instance" "sql_instance" {
   database_version    = var.database_version
   deletion_protection = var.instance_deletion_protection_enabled
 
-  connection {
-    port = var.instance_connection_port
-  }
-
   settings {
     user_labels       = var.labels
     tier              = var.instance_type

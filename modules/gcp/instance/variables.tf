@@ -45,10 +45,6 @@ variable "instance_disk_autoresize" {
   type = bool
 }
 
-variable "instance_connection_port" {
-  type = string
-}
-
 variable "instance_availability_type" {
   type = string
 }
@@ -116,7 +112,7 @@ variable "instance_job_start_event_paused" {
 
 variable "instance_job_stop_event_cron" {
   type = string
-  default = "0 20 * * *" # At 20:00 PM
+  default = "30 19 * * *" # At 19:30 PM
 }
 
 variable "instance_job_stop_event_paused" {
