@@ -28,7 +28,7 @@ module "redis_host_secret" {
   source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
-  secret_name   = "${var.database_name}-redis-host"
+  secret_name   = "${var.database_name}-redis-url"
   secret_value  = rediscloud_essentials_database.database.public_endpoint
 }
 
