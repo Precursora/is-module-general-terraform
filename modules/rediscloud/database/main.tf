@@ -3,7 +3,7 @@ resource "rediscloud_essentials_database" "database" {
   subscription_id     = var.subscription_id
   name                = var.database_name
   enable_default_user = true
-  password            = resource.random_password.password.result
+  password            = resource.random_password.redis_password.result
 
   data_persistence = "none"
   replication      = false
@@ -17,7 +17,7 @@ resource "rediscloud_essentials_database" "database" {
 }
 
 # User random password
-resource "random_password" "password" {
+resource "random_password" "redis_password" {
   length           = 12
   special          = true
   override_special = "!#$%&*()-_=+[]{}<>:?"
@@ -38,5 +38,5 @@ module "redis_password_secret" {
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.database_name}-redis-password"
-  secret_value  = resource.random_password.password.result
+  secret_value  = resource.random_password.redis_password.result
 }
