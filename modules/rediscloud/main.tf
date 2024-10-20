@@ -25,7 +25,7 @@ resource "random_password" "password" {
 
 # SQL instance host secret creation
 module "redis_host_secret" {
-  source        = "../../gcp/secret"
+  source        = "../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.database_name}-redis-host"
@@ -34,7 +34,7 @@ module "redis_host_secret" {
 
 # SQL user password secret creation
 module "redis_password_secret" {
-  source        = "../../gcp/secret"
+  source        = "../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
   secret_name   = "${var.database_name}-redis-password"
