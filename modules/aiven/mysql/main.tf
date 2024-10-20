@@ -46,8 +46,8 @@ module "sql_instance_host_secret" {
   source        = "../../gcp/secret"
   labels        = var.labels
   project_name  = var.project_name
-  secret_name   = "${var.aiven_service_name}-db-host"
-  secret_value  = aiven_mysql.mysql.service_host
+  secret_name   = "${var.aiven_service_name}-db-url"
+  secret_value  = aiven_mysql.mysql.service_uri
 }
 
 # SQL user username secret creation
