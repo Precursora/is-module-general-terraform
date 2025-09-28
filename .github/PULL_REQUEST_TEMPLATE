@@ -1,0 +1,29 @@
+**Referência:**
+[_Task vinculada ao pull request_]()
+
+**Descrição:**
+_Descreva brevemente as alterações propostas neste pull request._
+
+**Motivação:**
+_Explique a razão para estas alterações._
+
+**Alterações:**
+- Item 1
+- Item 2
+- ...
+
+**Confirmação:**
+- [ ] Descrição detalhada do pull request
+- [ ] Testes aplicáveis realizados
+- [ ] Revisão da qualidade do código
+- [ ] Revisão das vulnerabilidades
+- [ ] Pipelines executadas sem bypass
+- [ ] Documentação atualizada (README e outras)
+
+**Artefatos:**
+_Imagens de testes ou de implementações, se aplicável_
+
+---
+
+Por favor revisem,
+@Precursora/inner-source
