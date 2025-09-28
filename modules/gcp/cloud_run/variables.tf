@@ -1,8 +1,3 @@
-variable "environment" {
-  description = "The environment for the deployment (e.g., dev, prod)"
-  type        = string
-}
-
 variable "project_name" {
   description = "Project name to deploy CloudRun service"
   type        = string
@@ -72,6 +67,11 @@ variable "startup_cpu_boost" {
 
 variable "memory" {
   description = "The amount of memory allocated to the Cloud Run service"
+  type        = string
+}
+
+variable "env_file" {
+  description = "Environment variables file to load"
   type        = string
 }
 

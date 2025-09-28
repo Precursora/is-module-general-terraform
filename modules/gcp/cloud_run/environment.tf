@@ -1,6 +1,6 @@
 # List environment variables
 locals {
-  env_file = file("../app/environments/${upper(var.environment)}.env")
+  env_file = file(var.env_file)
   env_vars = (
     trimspace(local.env_file) == "" ? {} :
     yamldecode(local.env_file)
