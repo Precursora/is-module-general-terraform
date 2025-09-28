@@ -35,9 +35,11 @@ Criação de contas de serviço com configuração de permissionamento para serv
 #### Storage
 Criação de buckets no Cloud Storage
 
-
-### CloudFlare
+#### CloudFlare
 Criação de registros CNAME no CloudFlare
+
+#### CloudRun
+Criação de serviços e jobs no ClodRun.
 
 ### Aiven
 #### Mysql
