@@ -84,8 +84,8 @@ variable "job" {
   description = "CloudRun job configuration"
   type        = object({
     create       = bool
-    max_retries  = optional(number, 0)
-    task_timeout = optional(number, 180)
+    max_retries  = number
+    task_timeout = string
     command      = list(string)
     args         = list(string)
   })
