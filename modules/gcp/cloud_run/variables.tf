@@ -4,12 +4,14 @@ variable "environment" {
 }
 
 variable "project_name" {
-  type = string
+  description = "Project name to deploy CloudRun service"
+  type        = string
 }
 
 variable "default_region" {
-  type = string
-  default = "us-central1"
+  description = "Region to deploy CloudRun service"
+  type        = string
+  default     = "us-central1"
 }
 
 variable "service_account" {
@@ -31,31 +33,26 @@ variable "ingress" {
 variable "min_instances" {
   description = "The minimum number of instances for the Cloud Run service"
   type        = number
-  default     = 0
 }
 
 variable "max_instances" {
   description = "The maximum number of instances for the Cloud Run service"
   type        = number
-  default     = 2
 }
 
 variable "timeout" {
   description = "The timeout for the Cloud Run service"
   type        = string
-  default     = "60s"
 }
 
 variable "execution_environment" {
   description = "The execution environment for the Cloud Run service"
   type        = string
-  default     = "EXECUTION_ENVIRONMENT_GEN1"
 }
 
 variable "concurrency" {
   description = "The maximum number of requests that can be handled concurrently by a single instance"
   type        = number
-  default     = 80
 }
 
 variable "cpu" {
@@ -64,15 +61,13 @@ variable "cpu" {
 }
 
 variable "cpu_idle" {
-  description = "Define whether the CPU should always be allocated"
+  description = "Define whether the CPU is only allocated during requests"
   type        = bool
-  default     = true
 }
 
 variable "startup_cpu_boost" {
   description = "Define whether to enable CPU throttling on container startup"
   type        = bool
-  default     = true 
 }
 
 variable "memory" {
@@ -83,21 +78,15 @@ variable "memory" {
 variable "secrets" {
   description = "A map of secret environment variables for the Cloud Run service"
   type        = map(string)
-  default     = {}
 }
 
 variable "job" {
-  type    = object({
+  description = "CloudRun job configuration"
+  type        = object({
     create       = bool
     max_retries  = optional(number, 0)
     task_timeout = optional(number, 180)
     command      = list(string)
     args         = list(string)
   })
-
-  default = {
-    create  = false
-    command = [ "sh", "-c" ]
-    args    = [ "echo \"Running tasks\"" ]
-  }
 }
