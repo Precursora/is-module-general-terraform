@@ -25,18 +25,20 @@ resource "random_password" "redis_password" {
 
 # SQL instance host secret creation
 module "redis_host_secret" {
-  source        = "../../gcp/secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.database_name}-redis-url"
-  secret_value  = rediscloud_essentials_database.database.public_endpoint
+  source         = "../../gcp/secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.database_name}-redis-url"
+  secret_value   = rediscloud_essentials_database.database.public_endpoint
 }
 
 # SQL user password secret creation
 module "redis_password_secret" {
-  source        = "../../gcp/secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.database_name}-redis-password"
-  secret_value  = resource.random_password.redis_password.result
+  source         = "../../gcp/secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.database_name}-redis-password"
+  secret_value   = resource.random_password.redis_password.result
 }

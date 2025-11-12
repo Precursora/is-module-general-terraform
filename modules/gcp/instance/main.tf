@@ -93,18 +93,20 @@ module "sql_instance_stop_scheduler_job" {
 
 # SQL instance host secret creation
 module "sql_instance_host_secret" {
-  source        = "../secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.instance_name}-db-host"
-  secret_value  = google_sql_database_instance.sql_instance.ip_address.0.ip_address
+  source         = "../secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.instance_name}-db-host"
+  secret_value   = google_sql_database_instance.sql_instance.ip_address.0.ip_address
 }
 
 # SQL instance socket secret creation
 module "sql_instance_socket_secret" {
-  source        = "../secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.instance_name}-db-socket"
-  secret_value  = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.sql_instance.name}"
+  source         = "../secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.instance_name}-db-socket"
+  secret_value   = "/cloudsql/${var.project_name}:${var.default_region}:${google_sql_database_instance.sql_instance.name}"
 }

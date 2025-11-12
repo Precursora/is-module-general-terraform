@@ -13,9 +13,10 @@ resource "google_recaptcha_enterprise_key" "recaptcha" {
 
 # ReCaptcha enterprise site key secret creation
 module "recaptcha_site_key" {
-  source        = "../secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.recaptcha_name}-site-key"
-  secret_value  = reverse(split("/", google_recaptcha_enterprise_key.recaptcha.id))[0]
+  source         = "../secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.recaptcha_name}-site-key"
+  secret_value   = reverse(split("/", google_recaptcha_enterprise_key.recaptcha.id))[0]
 }

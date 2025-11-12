@@ -14,19 +14,21 @@ resource "google_sql_user" "sql_user_username" {
 
 # SQL user username secret creation
 module "user_username_secret" {
-  source        = "../secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.secret_name}-db-username"
-  secret_value  = google_sql_user.sql_user_username.name
+  source         = "../secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.secret_name}-db-username"
+  secret_value   = google_sql_user.sql_user_username.name
 }
 
 # SQL user password secret creation
 module "user_password_secret" {
-  depends_on    = [google_sql_user.sql_user_username]
-  source        = "../secret"
-  labels        = var.labels
-  project_name  = var.project_name
-  secret_name   = "${var.secret_name}-db-password"
-  secret_value  = random_password.sql_user_password.result
+  depends_on     = [google_sql_user.sql_user_username]
+  source         = "../secret"
+  labels         = var.labels
+  project_name   = var.project_name
+  default_region = var.default_region
+  secret_name    = "${var.secret_name}-db-password"
+  secret_value   = random_password.sql_user_password.result
 }
