@@ -21,10 +21,14 @@ resource "aiven_valkey" "valkey" {
 }
 
 resource "aiven_valkey_user" "user" {
-  service_name = aiven_valkey.valkey.service_name
-  project      = aiven_valkey.valkey.project
-  username     = var.username
-  password     = resource.random_password.user_password.result
+  service_name          = aiven_valkey.valkey.service_name
+  project               = aiven_valkey.valkey.project
+  username              = var.username
+  password              = resource.random_password.user_password.result
+  valkey_acl_categories = [ "+@all" ]
+  valkey_acl_keys       = [ "*" ]
+  valkey_acl_commands   = [ "+@all" ]
+  valkey_acl_channels   = [ "+@all" ]
 }
 
 # SQL instance host secret creation
