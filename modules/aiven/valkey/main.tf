@@ -27,8 +27,8 @@ resource "aiven_valkey_user" "user" {
   password              = resource.random_password.user_password.result
   valkey_acl_categories = [ "+@all" ]
   valkey_acl_keys       = [ "*" ]
-  valkey_acl_commands   = [ "+@all" ]
-  valkey_acl_channels   = [ "+@all" ]
+  valkey_acl_commands   = [ "+*" ]
+  valkey_acl_channels   = [ "*" ]
 }
 
 # SQL instance host secret creation
