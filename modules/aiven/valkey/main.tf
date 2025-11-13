@@ -33,7 +33,7 @@ module "aiven_valkey_host_secret" {
   labels         = var.labels
   project_name   = var.project_name
   default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-redis-host"
+  secret_name    = "${var.aiven_service_name}-valkey-host"
   secret_value   = aiven_valkey.valkey.service_host
 }
 
@@ -43,7 +43,7 @@ module "aiven_valkey_user_secret" {
   labels         = var.labels
   project_name   = var.project_name
   default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-redis-username"
+  secret_name    = "${var.aiven_service_name}-valkey-username"
   secret_value   = aiven_valkey_user.user.username
 }
 
@@ -53,6 +53,6 @@ module "aiven_valkey_password_secret" {
   labels         = var.labels
   project_name   = var.project_name
   default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-redis-password"
+  secret_name    = "${var.aiven_service_name}-valkey-password"
   secret_value   = aiven_valkey_user.user.password
 }
