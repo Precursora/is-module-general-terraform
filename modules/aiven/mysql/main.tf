@@ -48,7 +48,7 @@ module "sql_instance_host_secret" {
   project_name   = var.project_name
   default_region = var.default_region
   secret_name    = "${var.aiven_service_name}-db-host"
-  secret_value   = aiven_mysql.mysql.service_host
+  secret_value   = "${aiven_mysql.mysql.service_host}:${aiven_mysql.mysql.service_port}"
 }
 
 # SQL user username secret creation

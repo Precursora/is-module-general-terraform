@@ -34,7 +34,7 @@ module "aiven_valkey_host_secret" {
   project_name   = var.project_name
   default_region = var.default_region
   secret_name    = "${var.aiven_service_name}-cache-host"
-  secret_value   = aiven_valkey.valkey.service_host
+  secret_value   = "${aiven_valkey.valkey.service_host}:${aiven_valkey.valkey.service_port}"
 }
 
 # SQL user username secret creation
