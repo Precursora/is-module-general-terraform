@@ -28,6 +28,7 @@ resource "aiven_valkey_user" "user" {
   valkey_acl_categories = [ "+@all" ]
   valkey_acl_keys       = [ "*" ]
   valkey_acl_channels   = [ "*" ]
+  valkey_acl_commands   = ["+get", "+set", "+del", "+scan", "+info", "+auth", "+ping", "+config", "+keys"]
 }
 
 # SQL instance host secret creation
