@@ -1,8 +1,7 @@
-# User random password
-resource "random_password" "user_password" {
-  length           = 12
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+# Random user password
+module "random_password" {
+  source = "../../password"
+  length = 12
 }
 
 resource "aiven_mysql" "mysql" {
@@ -38,7 +37,7 @@ resource "aiven_mysql_user" "user" {
   service_name = aiven_mysql.mysql.service_name
   project      = aiven_mysql.mysql.project
   username     = var.username
-  password     = resource.random_password.user_password.result
+  password     = module.random_password.value
 }
 
 # SQL instance host secret creation
