@@ -42,31 +42,11 @@ resource "aiven_mysql_user" "user" {
 }
 
 # SQL instance host secret creation
-module "sql_instance_host_secret" {
+module "aiven_mysql_url_secret" {
   source         = "../../gcp/secret"
   labels         = var.labels
   project_name   = var.project_name
   default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-db-host"
-  secret_value   = "${aiven_mysql.mysql.service_host}:${aiven_mysql.mysql.service_port}"
-}
-
-# SQL user username secret creation
-module "user_username_secret" {
-  source         = "../../gcp/secret"
-  labels         = var.labels
-  project_name   = var.project_name
-  default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-db-username"
-  secret_value   = aiven_mysql_user.user.username
-}
-
-# SQL user password secret creation
-module "user_password_secret" {
-  source         = "../../gcp/secret"
-  labels         = var.labels
-  project_name   = var.project_name
-  default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-db-password"
-  secret_value   = aiven_mysql_user.user.password
+  secret_name    = "${var.aiven_service_name}-url"
+  secret_value   = "mysql://${aiven_mysql_user.user.username}:${aiven_mysql_user.user.password}@${aiven_mysql.mysql.service_host}:${aiven_mysql.mysql.service_port}"
 }
