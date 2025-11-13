@@ -28,31 +28,11 @@ resource "aiven_valkey_user" "user" {
 }
 
 # SQL instance host secret creation
-module "aiven_valkey_host_secret" {
+module "aiven_valkey_url_secret" {
   source         = "../../gcp/secret"
   labels         = var.labels
   project_name   = var.project_name
   default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-cache-host"
-  secret_value   = aiven_valkey.valkey.service_host
-}
-
-# SQL user username secret creation
-module "aiven_valkey_user_secret" {
-  source         = "../../gcp/secret"
-  labels         = var.labels
-  project_name   = var.project_name
-  default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-cache-username"
-  secret_value   = aiven_valkey_user.user.username
-}
-
-# SQL user password secret creation
-module "aiven_valkey_password_secret" {
-  source         = "../../gcp/secret"
-  labels         = var.labels
-  project_name   = var.project_name
-  default_region = var.default_region
-  secret_name    = "${var.aiven_service_name}-cache-password"
-  secret_value   = aiven_valkey_user.user.password
+  secret_name    = "${var.aiven_service_name}-url"
+  secret_value   = "rediss://${aiven_valkey_user.user.username}:${aiven_valkey_user.user.password}@${aiven_valkey.valkey.service_host}:${aiven_valkey.valkey.service_port}"
 }
