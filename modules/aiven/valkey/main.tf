@@ -1,7 +1,8 @@
 # Random user password
-module "random_password" {
-  source = "../../password"
-  length = 12
+resource "random_password" "password" {
+  length           = 24
+  special          = true
+  override_special = "!$&*()-_=<>.~,;"
 }
 
 resource "aiven_valkey" "valkey" {
@@ -23,7 +24,7 @@ resource "aiven_valkey_user" "user" {
   service_name          = aiven_valkey.valkey.service_name
   project               = aiven_valkey.valkey.project
   username              = var.username
-  password              = module.random_password.result
+  password              = random_password.password.result
   valkey_acl_categories = [ "+@all" ]
   valkey_acl_keys       = [ "*" ]
   valkey_acl_channels   = [ "*" ]
