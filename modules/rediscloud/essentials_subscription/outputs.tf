@@ -3,5 +3,5 @@ output "plan" {
 }
 
 output "subscription" {
-  value = resource.rediscloud_essentials_subscription.subscription.id
+  value = rediscloud_essentials_subscription.subscription.id
 }
